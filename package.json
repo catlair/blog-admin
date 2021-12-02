@@ -11,7 +11,7 @@
     "@iconify/iconify": "^2.1.0",
     "@vueuse/core": "^7.1.2",
     "@vueuse/shared": "^7.1.2",
-    "ant-design-vue": "^2.2.8",
+    "ant-design-vue": "^3.0.0-alpha.13",
     "axios": "^0.24.0",
     "dayjs": "^1.10.7",
     "echarts": "^5.2.2",
