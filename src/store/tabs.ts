@@ -7,6 +7,4 @@ export interface MultipleTabState {
   lastRemovedTabIndex: number
 }
 
-export const useTabStore = defineStore('app-multiple-tab', {
-  
-})
+export const useTabStore = defineStore('app-multiple-tab', {})

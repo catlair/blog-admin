@@ -22,6 +22,7 @@ export default defineComponent({
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { useAppStore } from '@/store/app'
+import { getParentPath } from '@/utils'
 
 const appStore = useAppStore()
 const $route = useRoute()
@@ -30,7 +31,7 @@ const routes = ref<any[]>([])
 
 watchEffect(() => {
   routes.value = []
-  const currentActiveMenu = $route.meta.currentActiveMenu
+  const currentActiveMenu = getParentPath($route.fullPath)
 
   const parent = appStore.routes.find((route) => currentActiveMenu === route.path)
 

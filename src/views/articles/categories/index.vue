@@ -1,10 +1,18 @@
 <template>
-  Content
-  <Icon icon="ic:baseline-article" size="38"></Icon>
+  <a-tabs :activeKey="activeKey">
+    <a-tab-pane key="1" tab="Tab 1">Content of Tab Pane 1</a-tab-pane>
+    <a-tab-pane key="2" tab="Tab 2" force-render>Content of Tab Pane 2</a-tab-pane>
+    <a-tab-pane key="3" tab="Tab 3">Content of Tab Pane 3</a-tab-pane>
+  </a-tabs>
 </template>
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
 
-<script setup lang="ts">
-import { Icon } from '@/components/Icon'
+export default defineComponent({
+  setup() {
+    return {
+      activeKey: ref('2')
+    }
+  }
+})
 </script>
-
-<style lang="" scoped></style>
