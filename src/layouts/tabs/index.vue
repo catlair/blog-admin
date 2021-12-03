@@ -12,14 +12,14 @@
       <template v-for="pane in panes" :key="pane.fullPath">
         <a-tab-pane :closable="!pane?.meta?.affix" :tab="pane.meta.title"> </a-tab-pane>
       </template>
-      <template #rightExtra>
-        <a-button>{{ $route.fullPath }}</a-button>
-      </template>
+      <template #rightExtra> <TabDeDropdown /> </template>
     </a-tabs>
   </div>
 </template>
 
 <script setup lang="ts">
+import TabDeDropdown from './components/TabDropdown.vue'
+
 const route = useRoute()
 const go = useGo()
 
@@ -112,7 +112,7 @@ export default defineComponent({
       border: 0;
       box-shadow: none;
 
-      svg {
+      .ant-tabs-nav-wrap svg {
         width: 0.7em;
         fill: #000000d9;
       }
@@ -200,6 +200,27 @@ export default defineComponent({
             }
           }
         }
+      }
+    }
+  }
+
+  .ant-dropdown-trigger {
+    display: inline-flex;
+    margin-right: 10px;
+    span {
+      display: inline-block;
+      width: 36px;
+      height: 30px;
+      line-height: 30px;
+      color: #00000073;
+      text-align: center;
+      cursor: pointer;
+      border-left: 1px solid #d9d9d9;
+
+      &.iconify {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }
