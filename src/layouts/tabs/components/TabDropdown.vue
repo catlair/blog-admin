@@ -20,53 +20,16 @@
 </template>
 
 <script lang="ts" setup>
-import { DropMenu, MenuEventEnum } from './types'
+import { toRefs } from 'vue'
 import { Icon } from '@/components/Icon'
+import { useTab } from '@/hooks/useTab'
 
-const dropMenuList: DropMenu[] = [
-  {
-    icon: 'ion:reload-sharp',
-    event: MenuEventEnum.REFRESH_PAGE,
-    text: '刷新页面',
-    disabled: true
-  },
-  {
-    icon: 'clarity:close-line',
-    event: MenuEventEnum.CLOSE_CURRENT,
-    text: '关闭',
-    disabled: false,
-    divider: true
-  },
-  {
-    icon: 'line-md:arrow-close-left',
-    event: MenuEventEnum.CLOSE_LEFT,
-    text: '关闭左侧',
-    disabled: false,
-    divider: false
-  },
-  {
-    icon: 'line-md:arrow-close-right',
-    event: MenuEventEnum.CLOSE_RIGHT,
-    text: '关闭右侧',
-    disabled: false,
-    divider: true
-  },
-  {
-    icon: 'dashicons:align-center',
-    event: MenuEventEnum.CLOSE_OTHER,
-    text: '关闭其他',
-    disabled: false
-  },
-  {
-    icon: 'clarity:minus-line',
-    event: MenuEventEnum.CLOSE_ALL,
-    text: '关闭全部',
-    disabled: false
-  }
-]
+const props = defineProps<{ activeKey: string }>()
+const { activeKey } = toRefs(props)
+const { dropMenuList, dropMenuHandle } = useTab(activeKey)
 
 const clickHandle = (e: { key: string }) => {
-  console.log(e)
+  dropMenuHandle(e.key)
 }
 </script>
 

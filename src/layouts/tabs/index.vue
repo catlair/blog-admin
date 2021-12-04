@@ -8,61 +8,55 @@
       @edit="onEdit"
       @change="onChange"
       type="editable-card"
+      ref="aTabsRef"
     >
-      <template v-for="pane in panes" :key="pane.fullPath">
+      <template v-for="pane in state.tabList" :key="pane.fullPath">
         <a-tab-pane :closable="!pane?.meta?.affix" :tab="pane.meta.title"> </a-tab-pane>
       </template>
-      <template #rightExtra> <TabDeDropdown /> </template>
+      <template #rightExtra> <TabDeDropdown :activeKey="activeKey" /> </template>
     </a-tabs>
   </div>
 </template>
 
 <script setup lang="ts">
 import TabDeDropdown from './components/TabDropdown.vue'
+import { SortableEvent, useSortableOnMount } from '@/hooks/useSortable'
+import { useTabStore } from '@/store/tabs'
+import { useTab } from '@/hooks/useTab'
 
+const { state, closeTabByKey, addTab, moveTab } = useTabStore()
 const route = useRoute()
 const go = useGo()
 
-const panes = ref<any>([
-  {
-    fullPath: '/dashboard/analysis',
-    meta: { title: '分析页', affix: true }
+const activeKey = ref(state.affixPath)
+const aTabsRef = ref<HTMLElement | null>(null)
+
+const { goToTab } = useTab(activeKey)
+useSortableOnMount(aTabsRef, {
+  animation: 150,
+  level: 3,
+  onUpdate({ oldIndex, newIndex }: SortableEvent) {
+    moveTab(oldIndex!, newIndex!)
   }
-])
-const activeKey = ref()
+})
 
 const remove = (targetKey: string) => {
-  let lastIndex = 0
-  panes.value.forEach((pane, i) => {
-    if (pane.fullPath === targetKey) {
-      lastIndex = i - 1
-    }
-  })
-  panes.value = panes.value.filter((pane) => pane.fullPath !== targetKey)
-  if (panes.value.length && activeKey.value === targetKey) {
-    if (lastIndex >= 0) {
-      activeKey.value = panes.value[lastIndex].fullPath
-    } else {
-      activeKey.value = panes.value[0].fullPath
-    }
-    go(activeKey.value)
-  }
+  goToTab(closeTabByKey(targetKey) - 1, targetKey)
 }
 const onEdit = (key: string) => {
   remove(key)
 }
 const onChange = (key: string) => {
-  go(key)
+  go(key, true)
 }
 
 const panesPush = (fullPath: string) => {
-  const hasPane = panes.value.findIndex((pane) => pane.fullPath === fullPath)
+  const hasPane = state.tabList.findIndex((pane) => pane.fullPath === fullPath)
   activeKey.value = fullPath
   if (hasPane !== -1) {
     return
   }
-  const { meta, hash, query, matched } = route
-  panes.value.push({ fullPath, meta, hash, query, matched })
+  addTab({ ...route })
 }
 
 watch(
