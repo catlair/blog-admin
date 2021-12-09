@@ -7,12 +7,13 @@ import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import { wrapperEnv } from './build/utils'
 import { createProxy } from './build/vite/proxy'
+import { viteMockServe } from 'vite-plugin-mock'
 
 function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir)
 }
 
-export default ({ mode }: ConfigEnv): UserConfig => {
+export default ({ mode, command }: ConfigEnv): UserConfig => {
   const root = process.cwd()
 
   const env = loadEnv(mode, root)
@@ -38,10 +39,10 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       ]
     },
     server: {
-      // Listening on all local IPs
+      // 监听所有本地 ip （不仅仅是 127.0.0.1）
       host: true,
       port: VITE_PORT,
-      // Load proxy configuration from .env
+      // 加载环境变量设置代理
       proxy: createProxy(VITE_PROXY)
     },
     plugins: [
@@ -51,7 +52,11 @@ export default ({ mode }: ConfigEnv): UserConfig => {
         resolvers: [AntDesignVueResolver()],
         dts: pathResolve('types/components.d.ts')
       }),
-      PurgeIcons()
+      PurgeIcons(),
+      viteMockServe({
+        mockPath: 'mock',
+        localEnabled: command === 'serve'
+      })
     ]
   }
 }
