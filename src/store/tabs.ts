@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
-import { reactive, unref } from 'vue'
+import { unref } from 'vue'
+import { RemovableRef, useStorage } from '@vueuse/core'
 import { RouteLocationNormalized, RouteRecordNormalized, useRouter } from 'vue-router'
 import { useGo } from '@/hooks/useRouter'
 
@@ -20,7 +21,7 @@ export const useTabStore = defineStore('app-multiple-tab', () => {
 
   // 避免全局观察路由
   const affixTab = routes.find((route) => route.meta?.affix)!
-  const state: MultipleTabState = reactive({
+  const state: RemovableRef<MultipleTabState> = useStorage('multiple-tab', {
     tabList: [
       {
         path: affixTab.path,
@@ -44,13 +45,13 @@ export const useTabStore = defineStore('app-multiple-tab', () => {
   const addTab = (tab: RouteLocationNormalized) => {
     // fuck you vue-tools router 你在哪里看到我监视了整个响应式路由树？
     // 这里有个傻逼警告，如果你不去点击 vue-tools 你不会看到这个警告
-    state.tabList.push({ ...tab })
+    state.value.tabList.push({ ...tab })
   }
 
   const closeTabByKey = (deletetKey: string) => {
-    const lastIndex = state.tabList.findIndex((pane) => pane.fullPath === deletetKey)
+    const lastIndex = state.value.tabList.findIndex((pane) => pane.fullPath === deletetKey)
     if (lastIndex !== -1) {
-      state.tabList.splice(lastIndex, 1)
+      state.value.tabList.splice(lastIndex, 1)
     }
     return lastIndex
   }
@@ -61,7 +62,7 @@ export const useTabStore = defineStore('app-multiple-tab', () => {
    * @param newIndex 目标位置
    */
   const moveTab = (index: number, newIndex: number) => {
-    state.tabList.splice(newIndex, 0, state.tabList.splice(index, 1)[0])
+    state.value.tabList.splice(newIndex, 0, state.value.tabList.splice(index, 1)[0])
   }
 
   /**
@@ -69,7 +70,7 @@ export const useTabStore = defineStore('app-multiple-tab', () => {
    * @param pathList 要保留的路径列表
    */
   const bulkCloseTabs = async (pathList: string[], targetKey?: string) => {
-    state.tabList = state.tabList.filter((item) => pathList.includes(item.fullPath))
+    state.value.tabList = state.value.tabList.filter((item) => pathList.includes(item.fullPath))
     if (targetKey) {
       go(targetKey, true)
     } else if (pathList.length >= 1) {
