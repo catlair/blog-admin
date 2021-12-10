@@ -24,7 +24,7 @@ specifiers:
   postcss: ^8.4.3
   sortablejs: ^1.14.0
   tailwindcss: ^2.2.19
-  typescript: ^4.4.3
+  typescript: 4.5.3
   unplugin-vue-components: ^0.17.2
   vite: ^2.6.4
   vite-plugin-mock: ^2.9.6
@@ -45,7 +45,7 @@ dependencies:
   echarts: registry.npmmirror.com/echarts/5.2.2
   less: registry.npmmirror.com/less/4.1.2
   nprogress: registry.nlark.com/nprogress/0.2.0
-  pinia: registry.npmmirror.com/pinia/2.0.4_typescript@4.5.2+vue@3.2.23
+  pinia: registry.npmmirror.com/pinia/2.0.4_typescript@4.5.3+vue@3.2.23
   sortablejs: registry.nlark.com/sortablejs/1.14.0
   vue: registry.npmmirror.com/vue/3.2.23
   vue-router: registry.npmmirror.com/vue-router/4.0.12_vue@3.2.23
@@ -63,12 +63,12 @@ devDependencies:
   mockjs: registry.nlark.com/mockjs/1.1.0
   postcss: registry.npmmirror.com/postcss/8.4.3
   tailwindcss: registry.npmmirror.com/tailwindcss/2.2.19_bb6c3d31c32fe82322dca7a24f4bed2f
-  typescript: registry.npmmirror.com/typescript/4.5.2
+  typescript: registry.npmmirror.com/typescript/4.5.3
   unplugin-vue-components: registry.npmmirror.com/unplugin-vue-components/0.17.2_vite@2.6.14+vue@3.2.23
   vite: registry.npmmirror.com/vite/2.6.14_less@4.1.2
   vite-plugin-mock: registry.nlark.com/vite-plugin-mock/2.9.6_mockjs@1.1.0+vite@2.6.14
   vite-plugin-purge-icons: registry.nlark.com/vite-plugin-purge-icons/0.7.0_vite@2.6.14
-  vue-tsc: registry.npmmirror.com/vue-tsc/0.3.0_typescript@4.5.2
+  vue-tsc: registry.npmmirror.com/vue-tsc/0.3.0_typescript@4.5.3
 
 packages:
 
@@ -3258,7 +3258,7 @@ packages:
     name: picocolors
     version: 1.0.0
 
-  registry.npmmirror.com/pinia/2.0.4_typescript@4.5.2+vue@3.2.23:
+  registry.npmmirror.com/pinia/2.0.4_typescript@4.5.3+vue@3.2.23:
     resolution: {integrity: sha512-nAc2f9HmOcBbWRlnGDuBGedM1G6uFAR10FnJWP1/dgm1I2tM5jbgKL/3IgynP4mBnPCy//ky7g0WpCZl5Mmxsg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pinia/download/pinia-2.0.4.tgz}
     id: registry.npmmirror.com/pinia/2.0.4
     name: pinia
@@ -3274,7 +3274,7 @@ packages:
         optional: true
     dependencies:
       '@vue/devtools-api': registry.npmmirror.com/@vue/devtools-api/6.0.0-beta.20.1
-      typescript: registry.npmmirror.com/typescript/4.5.2
+      typescript: registry.npmmirror.com/typescript/4.5.3
       vue: registry.npmmirror.com/vue/3.2.23
       vue-demi: registry.npmmirror.com/vue-demi/0.12.1_vue@3.2.23
     dev: false
@@ -3437,10 +3437,10 @@ packages:
       - ts-node
     dev: true
 
-  registry.npmmirror.com/typescript/4.5.2:
-    resolution: {integrity: sha512-5BlMof9H1yGt0P8/WF+wPNw6GfctgGjXp5hkblpyT+8rkASSmkUKMXrxR0Xg8ThVCi/JnHQiKXeBaEwCeQwMFw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/typescript/download/typescript-4.5.2.tgz}
+  registry.npmmirror.com/typescript/4.5.3:
+    resolution: {integrity: sha512-eVYaEHALSt+s9LbvgEv4Ef+Tdq7hBiIZgii12xXJnukryt3pMgJf6aKhoCZ3FWQsu6sydEnkg11fYXLzhLBjeQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/typescript/download/typescript-4.5.3.tgz}
     name: typescript
-    version: 4.5.2
+    version: 4.5.3
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
@@ -3693,7 +3693,7 @@ packages:
       vue: registry.npmmirror.com/vue/3.2.23
     dev: false
 
-  registry.npmmirror.com/vue-tsc/0.3.0_typescript@4.5.2:
+  registry.npmmirror.com/vue-tsc/0.3.0_typescript@4.5.3:
     resolution: {integrity: sha1-Ozhyv08dLkQJtXrb2CYDLiU9tAY=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-tsc/download/vue-tsc-0.3.0.tgz}
     id: registry.npmmirror.com/vue-tsc/0.3.0
     name: vue-tsc
@@ -3702,7 +3702,7 @@ packages:
     peerDependencies:
       typescript: '*'
     dependencies:
-      typescript: registry.npmmirror.com/typescript/4.5.2
+      typescript: registry.npmmirror.com/typescript/4.5.3
       vscode-vue-languageservice: registry.npmmirror.com/vscode-vue-languageservice/0.27.30
     dev: true
 
