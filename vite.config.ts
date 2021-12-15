@@ -45,6 +45,15 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
       // 加载环境变量设置代理
       proxy: createProxy(VITE_PROXY)
     },
+    css: {
+      preprocessorOptions: {
+        less: {
+          modifyVars: {
+            hack: `true; @import (reference) "${resolve('src/design/config.less')}";`
+          }
+        }
+      }
+    },
     plugins: [
       vue(),
       vueJsx(),

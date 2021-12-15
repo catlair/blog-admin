@@ -12,8 +12,6 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/dashboard/analysis',
     meta: {
-      hideMenu: true,
-      hideBreadcrumb: true,
       title: '首页',
       currentActiveMenu: '/dashboard',
       icon: 'bx:bx-home'
@@ -24,8 +22,6 @@ export const asyncRoutes = [
         name: 'Analysis',
         component: () => import('@/views/dashboard/analysis/index.vue'),
         meta: {
-          hideMenu: true,
-          hideBreadcrumb: true,
           affix: true,
           title: '分析页',
           currentActiveMenu: '/dashboard',
@@ -37,8 +33,6 @@ export const asyncRoutes = [
         name: 'Workbench',
         component: () => import('@/views/dashboard/workbench/index.vue'),
         meta: {
-          hideMenu: true,
-          hideBreadcrumb: true,
           title: '工作台',
           currentActiveMenu: '/dashboard',
           icon: 'bx:bx-home'
@@ -53,7 +47,6 @@ export const asyncRoutes = [
     redirect: '/articles/post',
     meta: {
       title: '文章管理',
-      hideChildrenInMenu: true,
       icon: 'bx:bx-home'
     },
     children: [
@@ -62,8 +55,6 @@ export const asyncRoutes = [
         name: 'Post',
         component: () => import('@/views/articles/post/index.vue'),
         meta: {
-          hideMenu: true,
-          hideBreadcrumb: true,
           title: '发布文章',
           currentActiveMenu: '/articles',
           icon: 'bx:bx-home'
@@ -74,8 +65,6 @@ export const asyncRoutes = [
         name: 'List',
         component: () => import('@/views/articles/list/index.vue'),
         meta: {
-          hideMenu: true,
-          hideBreadcrumb: true,
           title: '文章列表',
           currentActiveMenu: '/articles',
           icon: 'bx:bx-home'
@@ -86,8 +75,6 @@ export const asyncRoutes = [
         name: 'Categories',
         component: () => import('@/views/articles/categories/index.vue'),
         meta: {
-          hideMenu: true,
-          hideBreadcrumb: true,
           title: '分类',
           currentActiveMenu: '/articles',
           icon: 'bx:bx-home'
@@ -96,11 +83,8 @@ export const asyncRoutes = [
       {
         path: 'tags',
         name: 'Tags',
-
         component: () => import('@/views/articles/tags/index.vue'),
         meta: {
-          hideMenu: true,
-          hideBreadcrumb: true,
           title: '标签',
           currentActiveMenu: '/articles',
           icon: 'bx:bx-home'
@@ -120,8 +104,6 @@ export const asyncRoutes = [
         name: 'Comments',
         component: () => import('@/views/messages/comments/index.vue'),
         meta: {
-          hideMenu: true,
-          hideBreadcrumb: true,
           title: '评论',
           currentActiveMenu: '/messages',
           icon: 'bx:bx-home'
@@ -132,8 +114,6 @@ export const asyncRoutes = [
         name: 'Leave',
         component: () => import('@/views/messages/leave/index.vue'),
         meta: {
-          hideMenu: true,
-          hideBreadcrumb: true,
           title: '留言',
           currentActiveMenu: '/messages',
           icon: 'bx:bx-home'
@@ -151,6 +131,16 @@ export const routes: RouteRecordRaw[] = [
     meta: {
       title: '首页',
       icon: 'bx:bx-home'
+    }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/login/index.vue'),
+    meta: {
+      title: '登录',
+      hideMenu: true,
+      hideBreadcrumb: true
     }
   }
 ]

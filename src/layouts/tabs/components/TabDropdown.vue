@@ -1,6 +1,6 @@
 <template>
-  <a-dropdown :trigger="['click']">
-    <span class="ant-dropdown-link" @click.prevent>
+  <a-dropdown :trigger="['hover']">
+    <span class="ant-dropdown-link">
       <span>
         <Icon icon="ion:chevron-down" />
       </span>
@@ -39,3 +39,10 @@ export default defineComponent({
   name: 'TabDropdown'
 })
 </script>
+
+<style scoped>
+.iconify {
+  font-size: 16px;
+  vertical-align: -0.2em !important;
+}
+</style>

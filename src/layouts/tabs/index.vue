@@ -62,6 +62,9 @@ const panesPush = (fullPath: string) => {
 watch(
   () => route.fullPath,
   (fullPath) => {
+    if (route.meta.hideMenu) {
+      return
+    }
     panesPush(fullPath)
   }
 )
