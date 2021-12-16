@@ -16,7 +16,6 @@ export default defineComponent({
     const firstFullPath = route.fullPath
     const appStore = useAppStore()
     const state = reactive({
-      rootSubmenuKeys: ['sub1', 'sub2', 'sub4'],
       openKeys: [getParentPath(firstFullPath)],
       selectedKeys: [firstFullPath]
     })
@@ -33,6 +32,7 @@ export default defineComponent({
       (fullPath) => {
         state.selectedKeys = [fullPath]
         if (!appStore.collapsed) {
+          // 确保被打开的只有一个
           state.openKeys = [getParentPath(fullPath)]
         }
       }

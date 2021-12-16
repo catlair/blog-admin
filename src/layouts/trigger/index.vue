@@ -1,10 +1,6 @@
 <template>
-  <menu-unfold-outlined
-    v-if="appStore.collapsed"
-    class="trigger"
-    @click="appStore.triggerCollapsed"
-  />
-  <menu-fold-outlined v-else class="trigger" @click="appStore.triggerCollapsed" />
+  <menu-unfold-outlined v-if="appStore.collapsed" class="trigger" @click="clickHandle" />
+  <menu-fold-outlined v-else class="trigger" @click="clickHandle" />
 </template>
 
 <script lang="ts" setup>
@@ -12,6 +8,10 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
 import { useAppStore } from '@/store/app'
 
 const appStore = useAppStore()
+
+const clickHandle = () => {
+  appStore.triggerCollapsed()
+}
 </script>
 
 <script lang="ts">

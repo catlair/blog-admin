@@ -7,6 +7,8 @@ import router from '@/router'
 import { defineStore } from 'pinia'
 import { RemovableRef, useStorage } from '@vueuse/core'
 import { message } from 'ant-design-vue/es'
+import { usePermissionStore } from './permission'
+import { PAGE_NOT_FOUND_ROUTE } from '@/router/routes'
 
 interface UserState {
   userInfo: RemovableRef<UserInfo>
@@ -46,13 +48,21 @@ export const useUserStore = defineStore('app-user', {
     },
     async afterLoginAction() {
       await this.getUserInfoAction()
+      message.success('登录成功')
+      const permissionStore = usePermissionStore()
+      if (!permissionStore.isDynamicAddedRoute) {
+        const routes = await permissionStore.buildRoutesAction()
+        routes.forEach((route) => router.addRoute(route))
+        router.addRoute(PAGE_NOT_FOUND_ROUTE)
+        permissionStore.setDynamicAddedRoute(true)
+      }
+      router.push(PageEnum.BASE_HOME)
     },
     async getUserInfoAction() {
       try {
         if (!this.token) return null
         const userInfo = await getUserApi()
         this.userInfo = userInfo || {}
-        message.success('登录成功')
       } catch (error) {}
     },
     setUserInfo(info: UserInfo) {

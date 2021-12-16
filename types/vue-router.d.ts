@@ -12,7 +12,7 @@ declare module 'vue-router' {
     // 忽略权限
     ignoreAuth?: boolean
     // 规则
-    roles?: number[]
+    roles?: string[]
     // 忽略缓存
     ignoreKeepAlive?: boolean
     // 是固定 tab 页

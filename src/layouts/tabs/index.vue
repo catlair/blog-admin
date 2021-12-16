@@ -11,7 +11,11 @@
       ref="aTabsRef"
     >
       <template v-for="pane in state.tabList" :key="pane.fullPath">
-        <a-tab-pane :closable="!pane?.meta?.affix" :tab="pane.meta.title"> </a-tab-pane>
+        <a-tab-pane :closable="!pane?.meta?.affix">
+          <template #tab>
+            <TabDeDropdown :activeKey="activeKey" :tab-item="pane.meta.title" is-tabs />
+          </template>
+        </a-tab-pane>
       </template>
       <template #rightExtra> <TabDeDropdown :activeKey="activeKey" /> </template>
     </a-tabs>
@@ -201,7 +205,7 @@ export default defineComponent({
     }
   }
 
-  .ant-dropdown-trigger {
+  .ant-dropdown-trigger:is(.ant-dropdown-link) {
     display: inline-flex;
     margin-right: 10px;
     span {

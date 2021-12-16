@@ -7,7 +7,7 @@
         </template>
         <template #title>{{ route.meta.title }}</template>
         <a-menu-item v-for="routeChild in route.children" :key="route.path + '/' + routeChild.path">
-          {{ routeChild.meta.title }}
+          {{ routeChild.meta?.title }}
         </a-menu-item>
       </a-sub-menu>
     </template>
@@ -24,9 +24,10 @@
 
 <script setup lang="ts">
 import { Icon } from '@/components/Icon'
-import { useAppStore } from '@/store/app'
+import { usePermissionStore } from '@/store/permission'
 
-const { routes } = useAppStore()
+const permissionStore = usePermissionStore()
+const routes = permissionStore.menuList
 </script>
 
 <style lang="less" scoped></style>

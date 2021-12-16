@@ -4,5 +4,6 @@ export enum PageEnum {
   // 首页地址
   BASE_HOME = '/dashboard',
   // 首页详细地址
-  BASE_HOME_FULL = '/dashboard/analysis'
+  BASE_HOME_FULL = '/dashboard/analysis',
+  BASE_404 = '/404'
 }

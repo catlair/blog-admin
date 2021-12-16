@@ -21,10 +21,9 @@ export default defineComponent({
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { useAppStore } from '@/store/app'
 import { getParentPath } from '@/utils'
+import { asyncRoutes } from '@/router/routes'
 
-const appStore = useAppStore()
 const $route = useRoute()
 
 const routes = ref<any[]>([])
@@ -32,12 +31,11 @@ const routes = ref<any[]>([])
 watchEffect(() => {
   routes.value = []
   const currentActiveMenu = getParentPath($route.fullPath)
-
-  const parent = appStore.routes.find((route) => currentActiveMenu === route.path)
+  const parent = asyncRoutes.find((route) => currentActiveMenu === route.path)
 
   if (parent) {
     routes.value.push(parent)
-    routes.value.push(parent.children.find((child) => $route.fullPath.includes(child.path)))
+    routes.value.push(parent.children?.find((child) => $route.fullPath.includes(child.path)))
   }
 })
 </script>

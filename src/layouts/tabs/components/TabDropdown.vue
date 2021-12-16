@@ -1,6 +1,9 @@
 <template>
-  <a-dropdown :trigger="['hover']">
-    <span class="ant-dropdown-link">
+  <a-dropdown :trigger="isTabs ? ['contextmenu'] : ['hover']">
+    <span v-if="isTabs" @contextmenu.stop>
+      {{ tabItem }}
+    </span>
+    <span v-else class="ant-dropdown-link">
       <span>
         <Icon icon="ion:chevron-down" />
       </span>
@@ -24,7 +27,13 @@ import { toRefs } from 'vue'
 import { Icon } from '@/components/Icon'
 import { useTab } from '@/hooks/useTab'
 
-const props = defineProps<{ activeKey: string }>()
+const props = withDefaults(
+  defineProps<{ activeKey: string; isTabs?: boolean; tabItem?: string }>(),
+  {
+    isTabs: false
+  }
+)
+
 const { activeKey } = toRefs(props)
 const { dropMenuList, dropMenuHandle } = useTab(activeKey)
 
