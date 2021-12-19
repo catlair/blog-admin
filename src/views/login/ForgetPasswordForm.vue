@@ -63,7 +63,7 @@
 import FormTitle from './FormTitle.vue'
 import { isEmail } from '@/utils/is'
 import { message } from 'ant-design-vue/es'
-import { emailCodeApi, passResetApi } from '@/api/sys/user'
+import { emailCodeApi, passResetApi } from '@/api/user'
 
 const formRef = ref()
 const sendCodeFlag = ref(false)

@@ -1,5 +1,4 @@
 import { Router } from 'vue-router'
-import { checkTokenApi } from '@/api/sys/user'
 import { PageEnum } from '@/enums/pageEnum'
 import { usePermissionStore } from '@/store/permission'
 import { useUserStore } from '@/store/user'
@@ -11,16 +10,6 @@ import { PAGE_NOT_FOUND_ROUTE } from '../routes'
 export function createPermissionGuard(router: Router) {
   const userStore = useUserStore()
   const permissionStore = usePermissionStore()
-
-  const token = userStore.token
-  // 简单的校验一下 token
-  if (!token) {
-    router.push('/login')
-  } else {
-    checkTokenApi().catch(() => {
-      userStore.logout(true)
-    })
-  }
 
   router.beforeEach(async (to, from, next) => {
     const token = userStore.token
