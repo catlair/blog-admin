@@ -46,11 +46,15 @@ export const usePermissionStore = defineStore('app-permission', {
       routes = routes.filter(routeFilter)
 
       await this.buildMenuAction(routes)
-
       return routes
     },
     async buildMenuAction(routes: RouteRecordRaw[]) {
-      let menuList = routes.sort((a, b) => (a.meta?.orderNo || 0) - (b.meta?.orderNo || 0))
+      const menuFilter = (route: RouteRecordRaw) => {
+        return !route.meta?.hideMenu
+      }
+      const menuList = filter(routes, menuFilter).sort(
+        (a, b) => (a.meta?.orderNo || 0) - (b.meta?.orderNo || 0)
+      )
       this.setMenuList(menuList)
       return this.menuList
     }

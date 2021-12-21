@@ -34,8 +34,13 @@ watchEffect(() => {
   const parent = asyncRoutes.find((route) => currentActiveMenu === route.path)
 
   if (parent) {
+    parent.children = parent.children
+      ? parent.children.filter((route) => route.meta && !route.meta.hideBreadcrumb)
+      : []
     routes.value.push(parent)
-    routes.value.push(parent.children?.find((child) => $route.fullPath.includes(child.path)))
+    // parent.children?.find((child) => $route.fullPath.includes(child.path))
+    const matched = $route.matched
+    routes.value.push(matched[matched.length - 1])
   }
 })
 </script>
