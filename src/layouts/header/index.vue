@@ -1,5 +1,9 @@
 <template>
-  <div class="layout-multiple-header">
+  <div style="height: 80px"></div>
+  <div
+    class="layout-multiple-header"
+    :style="`width: calc(100% - ${appStore.collapsed ? '48' : '210'}px)`"
+  >
     <a-layout-header>
       <div class="layout-header-left">
         <LayoutTrigger></LayoutTrigger>
@@ -23,9 +27,19 @@ export default defineComponent({
 import LayoutTrigger from '@/layouts/trigger/index.vue'
 import MultipleTabs from '@/layouts/tabs/index.vue'
 import Breadcrumb from './components/Breadcrumb.vue'
+import { useAppStore } from '@/store/app'
+
+const appStore = useAppStore()
 </script>
 
 <style lang="less" scoped>
+.layout-multiple-header {
+  position: fixed;
+  z-index: @layout-max-fixed-z-index;
+  top: 0;
+  right: 0;
+  .layout-width-transition();
+}
 .layout-header-left {
   display: flex;
 }
