@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import PurgeIcons from 'vite-plugin-purge-icons'
 import Components from 'unplugin-vue-components/vite'
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import { AntDesignVueResolver, ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { wrapperEnv } from './build/utils'
 import { createProxy } from './build/vite/proxy'
 import { viteMockServe } from 'vite-plugin-mock'
@@ -43,7 +43,8 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
       host: true,
       port: VITE_PORT,
       // 加载环境变量设置代理
-      proxy: createProxy(VITE_PROXY)
+      proxy: createProxy(VITE_PROXY),
+      strictPort: true
     },
     css: {
       preprocessorOptions: {
@@ -58,7 +59,7 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
       vue(),
       vueJsx(),
       Components({
-        resolvers: [AntDesignVueResolver()],
+        resolvers: [AntDesignVueResolver(), ElementPlusResolver()],
         dts: pathResolve('types/components.d.ts')
       }),
       PurgeIcons(),
