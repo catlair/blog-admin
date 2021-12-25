@@ -84,6 +84,17 @@ export const asyncRoutes: RouteRecordRaw[] = [
         }
       },
       {
+        path: 'edit/:id',
+        name: 'Edit',
+        component: () => import('@/views/articles/edit/index.vue'),
+        meta: {
+          title: '编辑文章',
+          currentActiveMenu: '/articles',
+          hideMenu: true,
+          hideBreadcrumb: true
+        }
+      },
+      {
         path: 'list',
         name: 'List',
         component: () => import('@/views/articles/list/index.vue'),
@@ -168,7 +179,8 @@ export const routes: RouteRecordRaw[] = [
     meta: {
       title: '登录',
       hideMenu: true,
-      hideBreadcrumb: true
+      hideBreadcrumb: true,
+      hideTab: true
     }
   },
   PAGE_NOT_FOUND_ROUTE

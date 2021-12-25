@@ -6,6 +6,7 @@ export function getLabelOptions(value: any, labelObj: object) {
     .filter((key) => Number.isNaN(Number(key)))
     .map((key) => ({
       value: key,
-      label: labelObj[key]
+      label: labelObj[key],
+      disabled: false
     }))
 }

@@ -1,5 +1,5 @@
 <template>
-  <ArticleEditor type="post" />
+  <ArticleEditor type="edit" />
 </template>
 
 <script setup lang="ts">

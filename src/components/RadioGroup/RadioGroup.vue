@@ -1,6 +1,11 @@
 <template>
   <a-radio-group :value="value" @update:value="updateValue">
-    <a-radio-button v-for="option in options" :value="option.value" :key="option.value.toString()">
+    <a-radio-button
+      v-for="option in options"
+      :value="option.value"
+      :key="option.value.toString()"
+      :disabled="option.disabled || false"
+    >
       {{ option.label }}
     </a-radio-button>
   </a-radio-group>
@@ -16,7 +21,8 @@ export default defineComponent({
     options: propTypes.arrayOf(
       propTypes.shape({
         value: propTypes.oneOfType([String]),
-        label: propTypes.oneOfType([String])
+        label: propTypes.oneOfType([String]),
+        disabled: propTypes.oneOfType([Boolean])
       })
     ).isRequired
   },

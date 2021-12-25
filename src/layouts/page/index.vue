@@ -1,7 +1,8 @@
 <template>
   <RouterView>
     <template #default="{ Component, route }">
-      <keep-alive>
+      <component v-if="route.meta.ignoreKeepAlive" :is="Component" :key="route.fullPath" />
+      <keep-alive v-else>
         <component :is="Component" :key="route.fullPath" />
       </keep-alive>
     </template>
